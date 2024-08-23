@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.ProfileEditPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vmodel:ProfileEditViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding DeleteCommand}">
+            <ToolbarItem.IconImageSource>
+
+                <FontImageSource FontFamily="Material"
+                                 Glyph="{x:Static md:Icons.DeleteOutline}" />
+
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+
+        <StackLayout Padding="{StaticResource LargeSpace}"
+                     Spacing="{StaticResource SmallSpace}">
+
+            <Grid RowDefinitions="80,40"
+                  ColumnDefinitions="80,40"
+                  HorizontalOptions="Center"
+                  RowSpacing="0"
+                  ColumnSpacing="0">
+
+                <pan:PancakeView CornerRadius="60"
+                                 Grid.ColumnSpan="2"
+                                 Grid.RowSpan="2">
+
+                    <pan:PancakeView.Border>
+                        <pan:Border Color="{StaticResource AccentColor}"
+                                    Thickness="2"/>
+                    </pan:PancakeView.Border>
+
+                    <Image Source="{Binding Image}"
+                           Aspect="AspectFit" />
+
+                </pan:PancakeView>
+
+                <pan:PancakeView CornerRadius="20"
+                                 Grid.Row="1"
+                                 Grid.Column="1"
+                                 BackgroundColor="{StaticResource AccentColor}">
+
+                    <Label Text="{x:Static md:Icons.Edit}"
+                           TextColor="{StaticResource TextColorOnAccent}"
+                           FontFamily="Material"
+                           FontSize="Title"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center"/>
+
+                    <pan:PancakeView.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding EditImageCommand}" />
+                    </pan:PancakeView.GestureRecognizers>
+
+                </pan:PancakeView>
+            </Grid>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <Label Text="{x:Static res:AppResources.Name}"
+                   Style="{StaticResource CaptionLabelStyle}" />
+
+            <template:ChicEntry Text="{Binding Name, Mode=TwoWay}"
+                                ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            <ContentView Style="{StaticResource MediumSpacer}"/>
+
+            <StackLayout Orientation="Horizontal">
+
+                <Label Text="{x:Static res:AppResources.ShowOnlyMoviesForKids}"
+                       Style="{StaticResource CaptionLabelStyle}"
+                       HorizontalOptions="StartAndExpand"
+                       VerticalTextAlignment="Center"/>
+
+                <Switch />
+
+            </StackLayout>
+
+            <ContentView Style="{StaticResource MediumSpacer}"/>
+
+            <Button Style="{StaticResource PrimaryButtonStyle}"
+                    Text="{x:Static res:AppResources.Save}"
+                    Command="{Binding SaveCommand}"/>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+

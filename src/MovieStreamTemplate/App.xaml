@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieStreamTemplate.App">
+    <!--
+        Define global resources and styles here, that apply to all pages in your app.
+    -->
+    <Application.Resources>
+        <ResourceDictionary>
+
+            <!-- Colors -->
+
+            <Color x:Key="PrimaryColor">#6043b1</Color>
+            <Color x:Key="AccentColor">#5ce0f5</Color>
+
+            <Color x:Key="PrimaryTextColor">White</Color>
+            <Color x:Key="SecondaryTextColor">LightGray</Color>
+            <Color x:Key="TextColorOnAccent">Black</Color>
+
+            <Color x:Key="BackgroundLightColor">#2e1e5c</Color>
+            <Color x:Key="BackgroundDarkColor">#170f36</Color>
+
+            <!-- Space values -->
+
+            <x:Double x:Key="MicroSpace">4</x:Double>
+
+            <x:Double x:Key="SmallSpace">8</x:Double>
+
+            <x:Double x:Key="MediumSpace">16</x:Double>
+
+            <x:Double x:Key="LargeSpace">32</x:Double>
+
+            <Thickness x:Key="SmallSpaceNoBottom"
+                       Thickness.Left="{StaticResource SmallSpace}"
+                       Thickness.Top="{StaticResource SmallSpace}"
+                       Thickness.Right="{StaticResource SmallSpace}"
+                       Thickness.Bottom="0" />
+
+            <!-- Label Styles -->
+
+            <Style x:Key="TitleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Title" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            </Style>
+
+            <Style x:Key="SubtitleLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+            </Style>
+
+            <Style x:Key="BodyLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+            </Style>
+
+            <Style x:Key="SmallBodyLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+            </Style>
+
+            <Style x:Key="CaptionLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+            </Style>
+
+            <Style x:Key="LinkLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="TextDecorations" Value="Underline" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style x:Key="AccentLabelStyle" TargetType="Label">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="FontSize" Value="Small" />
+            </Style>
+
+            <!-- Span Styles -->
+
+            <Style x:Key="CaptionSpanStyle" TargetType="Span">
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="TextColor" Value="{StaticResource SecondaryTextColor}" />
+            </Style>
+
+            <Style x:Key="LinkSpanStyle" TargetType="Span">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="TextDecorations" Value="Underline" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <!-- Spacer (Empty ContentView) Styles -->
+
+            <Style x:Key="MicroSpacer" TargetType="ContentView">
+                <Setter Property="HeightRequest" Value="{StaticResource MicroSpace}" />
+            </Style>
+
+            <Style x:Key="SmallSpacer" TargetType="ContentView">
+                <Setter Property="HeightRequest" Value="{StaticResource SmallSpace}" />
+            </Style>
+
+            <Style x:Key="MediumSpacer" TargetType="ContentView">
+                <Setter Property="HeightRequest" Value="{StaticResource MediumSpace}" />
+            </Style>
+
+            <Style x:Key="LargeSpacer" TargetType="ContentView">
+                <Setter Property="HeightRequest" Value="{StaticResource LargeSpace}" />
+            </Style>
+
+            <!-- Content Page Style -->
+
+            <Style x:Key="ContentPageStyle" TargetType="ContentPage">
+                <Setter Property="Background">
+                    <Setter.Value>
+
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="{StaticResource BackgroundDarkColor}"
+                                          Offset="0.0" />
+
+                            <GradientStop Color="{StaticResource BackgroundLightColor}"
+                                          Offset="0.5" />
+
+                            <GradientStop Color="{StaticResource BackgroundDarkColor}"
+                                          Offset="0.9" />
+                        </LinearGradientBrush>
+
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- Primary Button Style -->
+
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="Background" Value="{StaticResource PrimaryColor}"/>
+            </Style>
+
+            <!-- Secondary Button Style -->
+
+            <Style x:Key="SecondaryButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource PrimaryTextColor}" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="BorderColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="BorderWidth" Value="2" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+            <Style x:Key="AccentButtonStyle" TargetType="Button">
+                <Setter Property="TextColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="BorderColor" Value="{StaticResource AccentColor}" />
+                <Setter Property="BorderWidth" Value="1" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+            </Style>
+
+        </ResourceDictionary>        
+    </Application.Resources>
+</Application>
+

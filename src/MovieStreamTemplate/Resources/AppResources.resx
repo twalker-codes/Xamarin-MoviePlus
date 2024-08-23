@@ -1,0 +1,534 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resheader name="resmimetype">
+		<value>text/microsoft-resx</value>
+	</resheader>
+	<resheader name="version">
+		<value>2.0</value>
+	</resheader>
+	<resheader name="reader">
+		<value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+	<resheader name="writer">
+		<value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+	</resheader>
+
+	<data name="AppName">
+		<value>MoviePlus</value>
+    </data>
+
+	<data name="Home">
+		<value>Home</value>
+    </data>
+
+	<data name="Downloads">
+		<value>Downloads</value>
+    </data>
+
+	<data name="Download">
+		<value>Download</value>
+    </data>
+
+	<data name="Profile">
+		<value>Profile</value>
+    </data>
+
+	<data name="MyProfile">
+		<value>My Profile</value>
+    </data>
+
+	<data name="MovieGenres">
+		<value>Movie Genres</value>
+    </data>
+
+	<data name="FeaturedMovies">
+		<value>Featured Movies</value>
+    </data>
+
+	<data name="TrendingMovies">
+		<value>Trending Movies</value>
+    </data>
+
+	<data name="NewMovies">
+		<value>New Movies</value>
+    </data>
+
+	<data name="TopRatingMovies">
+		<value>Top Rating Movies</value>
+    </data>
+
+	<data name="WelcomeLogIn">
+		<value>Welcome Back, Log In!</value>
+    </data>
+
+	<data name="Username">
+		<value>Username</value>
+    </data>
+
+	<data name="Password">
+		<value>Password</value>
+    </data>
+
+	<data name="RememberMe">
+		<value>Remember Me</value>
+    </data>
+
+	<data name="ForgotPassword">
+		<value>Forgot password?</value>
+    </data>
+
+	<data name="LogIn">
+		<value>Log In</value>
+    </data>
+
+	<data name="LogInWithFacebook">
+		<value>Log In with Facebook</value>
+    </data>
+
+	<data name="LogInWithGoogle">
+		<value>Log In with Google</value>
+    </data>
+
+	<data name="DontHaveAccount">
+		<value>Don't have an coount? </value>
+    </data>
+
+	<data name="SignUp">
+		<value>Sign Up</value>
+    </data>
+
+	<data name="HelloSignUp">
+		<value>Hello, Sign Up!</value>
+    </data>
+
+	<data name="FullName">
+		<value>Full Name</value>
+    </data>
+
+	<data name ="Email">
+		<value>Email</value>
+    </data>
+
+	<data name="Phone">
+		<value>Phone</value>
+    </data>
+
+	<data name="ConfirmPassword">
+		<value>Confirm Password</value>
+    </data>
+
+	<data name="ByClickingSignUp">
+		<value>By clicking Sign Up you are in agreement of the</value>
+    </data>
+
+	<data name="TermsConditions">
+		<value> Terms and Conditions</value>
+    </data>
+
+	<data name="AlreadyHaveAccount">
+		<value>Already have an account? </value>
+    </data>
+
+	<data name="ResetMyPassword">
+		<value>Reset My Password</value>
+    </data>
+
+	<data name="PleaseTypeYourEmail">
+		<value>Please type your email then tap the Submit button. We will send an email to reset your password.</value>
+    </data>
+
+	<data name="Submit">
+		<value>Submit</value>
+    </data>
+
+	<data name="Edit">
+		<value>Edit</value>
+    </data>
+
+	<data name="UpdatePlan">
+		<value>Update Plan</value>
+    </data>
+
+	<data name="Setting">
+		<value>Setting</value>
+    </data>
+
+	<data name="Help">
+		<value>Help</value>
+    </data>
+
+	<data name="LogOut">
+		<value>Log Out</value>
+    </data>
+
+	<data name="Watchlist">
+		<value>Watchlist</value>
+    </data>
+
+	<data name="ChangePassword">
+		<value>Change Password</value>
+    </data>
+
+	<data name="AccountDetails">
+		<value>Account Details</value>
+    </data>
+
+	<data name="CurrentPassword">
+		<value>Current Password</value>
+    </data>
+
+	<data name="NewPassword">
+		<value>New Password</value>
+    </data>
+
+	<data name="ConfirmNewPassword">
+		<value>Confirm New Password</value>
+    </data>
+
+	<data name="Save">
+		<value>Save</value>
+    </data>
+
+	<data name="Info">
+		<value>Info</value>
+    </data>
+
+	<data name="EditPhotoTapped">
+		<value>Edit photo tapped.</value>
+    </data>
+
+	<data name="Cancel">
+		<value>Cancel</value>
+    </data>
+
+	<data name="OK">
+		<value>OK</value>
+    </data>
+
+	<data name="UseCellularData">
+		<value>Use Cellular Data</value>
+    </data>
+
+	<data name="AllowNotifications">
+		<value>Allow Notifications</value>
+    </data>
+
+	<data name="OnlyWifiWhenDownloading">
+		<value>Only Wi-Fi When Downloading</value>
+    </data>
+
+	<data name="PrimaryProfileCantDelete">
+		<value>Primary profile can't delete.</value>
+    </data>
+
+	<data name="Close">
+		<value>Close</value>
+    </data>
+
+	<data name="Search">
+		<value>Search</value>
+    </data>
+
+	<data name="Clear">
+		<value>Clear</value>
+    </data>
+
+	<data name="ProfileDetails">
+		<value>Profile Details</value>
+    </data>
+
+	<data name="Name">
+		<value>Name</value>
+    </data>
+
+	<data name="ShowOnlyMoviesForKids">
+		<value>Show Only Movies for Kids</value>
+    </data>
+
+	<data name="Delete">
+		<value>Delete</value>
+    </data>
+
+	<data name="Question">
+		<value>Question</value>
+    </data>
+
+	<data name="DoYouWantToDelete">
+		<value>Do you want to delete ?</value>
+    </data>
+
+	<data name="Add">
+		<value>Add</value>
+    </data>
+
+	<data name="NameRequired">
+		<value>Name is required.</value>
+    </data>
+
+	<data name="ChoosePlan">
+		<value>Choose A Plan</value>
+    </data>
+
+	<data name="YouCanCancelAnyTime">
+		<value>You can cancel at any time!</value>
+    </data>
+
+	<data name="Free">
+		<value>Free</value>
+    </data>
+
+	<data name="Standard">
+		<value>Standard</value>
+    </data>
+
+	<data name="Premium">
+		<value>Premium</value>
+    </data>
+
+	<data name="AnnularPrice">
+		<value>Annular Price</value>
+    </data>
+
+	<data name="VideoQuality">
+		<value>Video Quality</value>
+    </data>
+
+	<data name="Good">
+		<value>Good</value>
+    </data>
+
+	<data name="Better">
+		<value>Better</value>
+    </data>
+
+	<data name="TheBest">
+		<value>The Best</value>
+    </data>
+
+	<data name="NumberOfDevices">
+		<value>Number of Devices</value>
+    </data>
+
+	<data name="Resolution">
+		<value>Resolution</value>
+    </data>
+
+	<data name="Choose">
+		<value>Choose</value>
+    </data>
+
+	<data name="CardOwnersName">
+		<value>Card Owner's Name</value>
+    </data>
+
+	<data name="CardNumber">
+		<value>Card Number</value>
+    </data>
+
+	<data name="Month">
+		<value>Month</value>
+    </data>
+
+	<data name="Year">
+		<value>Year</value>
+    </data>
+
+	<data name="Cvc">
+		<value>CVC</value>
+    </data>
+
+	<data name="Checkout">
+		<value>Checkout</value>
+    </data>
+
+	<data name="Continue">
+		<value>Continue</value>
+    </data>
+
+	<data name="Congratulations">
+		<value>Congratulations!</value>
+    </data>
+
+	<data name="YourPlanUpdated">
+		<value>Your plan has been successfully updated.</value>
+    </data>
+
+	<data name="Movies">
+		<value>Movies</value>
+    </data>
+
+	<data name="SortBy">
+		<value>Sort by</value>
+    </data>
+
+	<data name="DoYouWantToDeleteSearchHistory">
+		<value>Do you want to delete search history?</value>
+    </data>
+
+	<data name="DoYouWantToDeleteAllDownloadedMovies">
+		<value>Do you want to delete all downloaded movies?</value>
+    </data>
+
+	<data name="DoYouWantToDeleteDownloadedMovie">
+		<value>Do you want to delete the downloaded movie?</value>
+    </data>
+
+	<data name="PlayTapped">
+		<value>Play tapped.</value>
+    </data>
+
+	<data name="NoItems">
+		<value>No items to display.</value>
+    </data>
+
+	<data name="Mins">
+		<value>mins</value>
+    </data>
+
+	<data name="Director">
+		<value>Director</value>
+    </data>
+
+	<data name="Genre">
+		<value>Genre</value>
+    </data>
+
+	<data name="Duration">
+		<value>Duration</value>
+    </data>
+
+	<data name="Play">
+		<value>Play</value>
+    </data>
+
+	<data name="CancelDownload">
+		<value>Cancel Download</value>
+    </data>
+
+	<data name="DeleteDownload">
+		<value>Delete Download</value>
+    </data>
+
+	<data name="Downloading">
+		<value>Downloading</value>
+    </data>
+
+	<data name="Downloaded">
+		<value>Downloaded</value>
+    </data>
+
+	<data name="InWatchlist">
+		<value>In Watchlist</value>
+    </data>
+
+	<data name="AddToWatchlist">
+		<value>Add to Watchlist</value>
+    </data>
+
+	<data name="RemoveFromWatchlist">
+		<value>Remove from Watchlist</value>
+    </data>
+
+	<data name="ShowReviews">
+		<value>Show Reviews</value>
+    </data>
+
+	<data name="Reviews">
+		<value>Reviews</value>
+    </data>
+
+	<data name="NewReview">
+		<value>New Review</value>
+    </data>
+
+	<data name="YourReview">
+		<value>Your Review</value>
+    </data>
+
+	<data name="YourReviewOptional">
+		<value>Your Review (Optional)</value>
+    </data>
+
+	<!-- Questions & Answers for the Help page-->
+
+	<data name="Question1">
+		<value>Sed nisl nunc, commodo nec arcu nec, condimentum euismod orci ?</value>
+    </data>
+
+	<data name="Question2">
+		<value>Vivamus eu ipsum justo. Nunc mollis purus non finibus porta ?</value>
+    </data>
+
+	<data name="Question3">
+		<value>Praesent rutrum, sapien in bibendum imperdiet, turpis risus ultrices augue, ullamcorper vehicula dui magna et arcu ?</value>
+    </data>
+
+	<data name="Question4">
+		<value>Aenean tempus velit tortor, id auctor lectus interdum dignissim. Aliquam et vestibulum nibh ?</value>
+    </data>
+
+	<data name="Question5">
+		<value>Nullam ornare finibus sem, sit amet maximus lectus vehicula in ?</value>
+    </data>
+
+	<data name="Question6">
+		<value>Donec rhoncus, justo sit amet malesuada placerat, sapien augue accumsan diam, sollicitudin accumsan orci urna non ipsum ?</value>
+    </data>
+
+	<data name="Question7">
+		<value>Proin dapibus efficitur fermentum. Donec cursus quam cursus nisi efficitur mattis ?</value>
+    </data>
+
+	<data name="Question8">
+		<value>Aenean ut arcu bibendum, molestie quam in, pretium tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Morbi ullamcorper est id dui egestas, nec mattis neque sollicitudin ?</value>
+    </data>
+
+	<data name="Question9">
+		<value>Morbi volutpat metus non sem viverra, eget feugiat est fringilla ?</value>
+    </data>
+
+	<data name="Question10">
+		<value>Proin suscipit commodo odio, eu malesuada nunc sodales et. Aliquam eu nunc vitae libero commodo feugiat ac vel ipsum ?</value>
+    </data>
+
+	<data name="Answer1">
+		<value>Duis sed libero eu nisl fringilla iaculis pharetra in odio. Nunc eget purus id felis imperdiet hendrerit vel nec ex. Sed sed commodo dolor. Donec elit erat, vulputate eu dictum non, laoreet mollis lacus. Nam consectetur mattis lorem et tincidunt. Sed tempus molestie molestie. Nullam tempus neque id posuere vehicula.</value>
+    </data>
+
+	<data name="Answer2">
+		<value>Nam interdum turpis magna. Fusce ornare ligula nec ullamcorper mattis. Vestibulum a leo blandit, congue sapien at, euismod diam.</value>
+    </data>
+
+	<data name="Answer3">
+		<value>Pellentesque a sem quis ante dignissim tristique euismod a urna. Quisque varius elit nec diam efficitur venenatis. Proin ornare urna ligula, ac dictum neque fermentum eu.</value>
+    </data>
+
+	<data name="Answer4">
+		<value>Donec lacus nisi, euismod eu ligula id, consequat commodo mi.</value>
+    </data>
+
+	<data name="Answer5">
+		<value>Vestibulum facilisis nulla quis ligula facilisis imperdiet. Proin lacinia bibendum neque, vel cursus mauris vehicula id. Sed id urna at mi efficitur dictum dignissim sed felis. Nunc porta felis nec tellus sagittis rutrum.</value>
+    </data>
+
+	<data name="Answer6">
+		<value>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Duis a enim purus. Etiam tempus tincidunt nunc nec scelerisque. Donec laoreet orci sit amet elit vestibulum mollis. Curabitur dolor leo, ornare et hendrerit a, tristique sed sapien.</value>
+    </data>
+
+	<data name="Answer7">
+		<value>Donec ullamcorper quam in feugiat luctus. Proin sed tellus tellus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. In et gravida lectus, quis vehicula quam.</value>
+    </data>
+
+	<data name="Answer8">
+		<value>Vestibulum ornare orci non iaculis eleifend. Quisque blandit sit amet augue et condimentum. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</value>
+    </data>
+
+	<data name="Answer9">
+		<value>Aenean eget urna facilisis, ornare mi nec, sollicitudin augue. Nullam in urna venenatis, fermentum lacus vitae, consectetur velit. Suspendisse potenti. Quisque a vehicula mauris, quis venenatis odio. Sed placerat urna id quam sollicitudin aliquet. Integer non erat ut urna tincidunt lacinia.</value>
+    </data>
+
+	<data name="Answer10">
+		<value>Aliquam erat volutpat. Donec fringilla erat tellus, at accumsan nisi vehicula vel. Morbi egestas diam tellus, ut efficitur neque dapibus varius.</value>
+    </data>
+
+</root>

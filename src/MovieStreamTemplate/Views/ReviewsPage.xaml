@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.ReviewsPage"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:model="clr-namespace:MovieStreamTemplate.Models"
+    xmlns:converter="clr-namespace:MovieStreamTemplate.Converters"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:mat="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <converter:ShortDateConverter x:Key="ShortDateConverter" />
+        <converter:RatingStarConverter x:Key="RatingStarConverter"/>
+        <converter:MovieGenreConverter x:Key="MovieGenreConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="{x:Static res:AppResources.Add}"
+                     Command="{Binding AddCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="Material"
+                                 Glyph="{x:Static mat:Icons.Add}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <Grid RowDefinitions="Auto,*"
+          Padding="{StaticResource SmallSpace}"
+          RowSpacing="0">
+
+        <StackLayout Orientation="Horizontal"
+                     Spacing="{StaticResource MediumSpace}"
+                     Padding="{StaticResource SmallSpace}">
+
+            <pan:PancakeView CornerRadius="16"
+                             WidthRequest="100"
+                             HeightRequest="150">
+                <Image Source="{Binding Poster}" />
+            </pan:PancakeView>
+
+            <StackLayout VerticalOptions="Center">
+
+                <Label Text="{Binding Name}"
+                       Style="{StaticResource TitleLabelStyle}"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <template:RatingStars Rating="{Binding AverageRating}"
+                                          ControlTemplate="{StaticResource RatingStarsControlTemplate}"
+                                          StarSize="24"/>
+
+                    <Label Text="{Binding AverageRating, StringFormat='({0:f1})'}"
+                           TextColor="{StaticResource PrimaryTextColor}"
+                           FontSize="Medium"
+
+                           VerticalTextAlignment="Center"/>
+
+                </StackLayout>
+
+                <Label Style="{StaticResource CaptionLabelStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+
+                            <Span>
+                                <Span.Text>
+                                    <MultiBinding StringFormat="{}{0} · {1} · {2} ">
+                                        <Binding Path="Genre"/>
+                                        <Binding Path="Year"/>
+                                        <Binding Path="Duration"/>
+                                    </MultiBinding>
+                                </Span.Text>
+                            </Span>
+
+                            <Span Text="{x:Static res:AppResources.Mins}"/>
+
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </StackLayout>
+
+        </StackLayout>
+
+        <RefreshView Command="{Binding LoadCommand}"
+                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                     RefreshColor="{StaticResource PrimaryTextColor}"
+                     Grid.Row="1">
+
+            <CollectionView ItemsSource="{Binding Reviews}"
+                            SelectionMode="None">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical"
+                                       ItemSpacing="0"/>
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ContentView Padding="{StaticResource SmallSpace}">
+
+                            <StackLayout x:DataType="model:Review">
+
+                                <StackLayout Orientation="Horizontal">
+
+                                    <Label Text="{Binding AuthorName}"
+                                            Style="{StaticResource SubtitleLabelStyle}"
+                                            LineBreakMode="NoWrap"
+                                            VerticalOptions="End" />
+
+                                    <Label Text="{Binding DateGmt ,Converter={StaticResource ShortDateConverter}}"
+                                            Style="{StaticResource SmallBodyLabelStyle}"
+                                            VerticalOptions="End" />
+
+                                </StackLayout>
+
+                                <template:RatingStars Rating="{Binding Star}"
+                                                        ControlTemplate="{StaticResource RatingStarsControlTemplate}"/>
+
+                                <Label Text="{Binding Text, StringFormat='{0}'}"
+                                        Style="{StaticResource SmallBodyLabelStyle}"
+                                        FontAttributes="Italic"
+                                        VerticalOptions="Center" />
+
+                            </StackLayout>
+
+                        </ContentView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+                <CollectionView.EmptyView>
+
+                    <Grid RowDefinitions="*,Auto,*">
+
+                        <ContentView />
+
+                        <StackLayout Padding="30"
+                                        Spacing="10"
+                                        Grid.Row="1"
+                                        VerticalOptions="Center">
+
+                            <Label Text="{x:Static res:AppResources.NoItems}"
+                                    Style="{StaticResource BodyLabelStyle}"
+                                    HorizontalTextAlignment="Center" />
+
+                            <Image Margin="{StaticResource SmallSpace}">
+                                <Image.Source>
+                                    <FontImageSource Glyph="{x:Static mat:Icons.Search}"
+                                                        FontFamily="Material"
+                                                        Color="{StaticResource SecondaryTextColor}"
+                                                        Size="120" />
+                                </Image.Source>
+                            </Image>
+
+                        </StackLayout>
+
+                        <ContentView Grid.Row="2"/>
+
+                    </Grid>
+
+                </CollectionView.EmptyView>
+
+            </CollectionView>
+
+        </RefreshView>
+
+    </Grid>
+
+</ContentPage>
+

@@ -1,0 +1,8 @@
+src/.idea
+src/MovieStreamTemplate/bin
+src/MovieStreamTemplate/obj
+src/MovieStreamTemplate.Android/bin
+src/MovieStreamTemplate.Android/obj
+src/MovieStreamTemplate.iOS/bin
+src/MovieStreamTemplate.iOS/obj
+*.user

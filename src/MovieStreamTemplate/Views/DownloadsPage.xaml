@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.DownloadsPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:model="clr-namespace:MovieStreamTemplate.Models"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:converter="clr-namespace:MovieStreamTemplate.Converters"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <ContentPage.Resources>
+        <converter:DownloadStatusConverter x:Key="DownloadStatusConverter"/>
+        <converter:DownloadStatusIconConverter x:Key="DownloadStatusIconConverter"/>
+        <converter:MovieGenreConverter x:Key="MovieGenreConverter" />
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding DeleteAllCommand}">
+            <ToolbarItem.IconImageSource>
+
+                <FontImageSource FontFamily="Material"
+                                 Glyph="{x:Static md:Icons.Delete}" />
+
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+        <RefreshView Command="{Binding LoadCommand}"
+                     RefreshColor="{StaticResource PrimaryTextColor}"
+                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                     Padding="{StaticResource SmallSpace}">
+
+            <CollectionView ItemsSource="{Binding Movies}"
+                            SelectionMode="None">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ContentView Padding="{StaticResource SmallSpace}"
+                                     x:DataType="model:DownloadItem">
+
+                            <Grid ColumnDefinitions="100, *, Auto"
+                                  RowDefinitions="150"
+                                  ColumnSpacing="{StaticResource MediumSpace}">
+
+                                <pan:PancakeView CornerRadius="16">
+                                    <Image Source="{Binding MoviePoster}"
+                                           Aspect="AspectFill"/>
+                                </pan:PancakeView>
+
+                                <StackLayout Grid.Column="1"
+                                             VerticalOptions="Center"
+                                             Spacing="{StaticResource SmallSpace}">
+
+                                    <Label Text="{Binding MovieTitle}"
+                                           Style="{StaticResource SubtitleLabelStyle}"/>
+
+                                    <Label Style="{StaticResource CaptionLabelStyle}">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+
+                                                <Span>
+                                                    <Span.Text>
+                                                        <MultiBinding StringFormat="{}{0} · {1} · {2} ">
+                                                            <Binding Path="MovieGenre" Converter="{StaticResource MovieGenreConverter}"/>
+                                                            <Binding Path="Year"/>
+                                                            <Binding Path="Minutes"/>
+                                                        </MultiBinding>
+                                                    </Span.Text>
+                                                </Span>
+
+                                                <Span Text="{x:Static res:AppResources.Mins}"/>
+
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+
+                                    <StackLayout Orientation="Horizontal">
+
+                                        <Label Text="{Binding Status, Converter={StaticResource DownloadStatusIconConverter}}"
+                                               TextColor="{StaticResource SecondaryTextColor}"
+                                               FontFamily="Material"
+                                               FontSize="Medium"/>
+
+                                        <Label Text="{Binding Status, Converter={StaticResource DownloadStatusConverter}}"
+                                               Style="{StaticResource CaptionLabelStyle}"/>
+
+                                    </StackLayout>
+
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="{StaticResource MediumSpace}">
+
+                                        <Button Text="{x:Static md:Icons.PlayArrow}"
+                                            FontFamily="MaterialOutlined"
+                                            FontSize="Large"
+                                            Style="{StaticResource AccentButtonStyle}"
+                                            Command="{Binding Source={RelativeSource
+                                                AncestorType={x:Type vmodel:DownloadsViewModel}}, Path=PlayCommand}"		
+                                            CommandParameter="{Binding .}"
+                                            WidthRequest="50"
+                                            HeightRequest="40"/>
+
+                                        <Button Text="{x:Static md:Icons.Info}"
+                                            FontFamily="MaterialOutlined"
+                                            FontSize="Large"
+                                            Style="{StaticResource AccentButtonStyle}"
+                                            Command="{Binding Source={RelativeSource
+                                                AncestorType={x:Type vmodel:DownloadsViewModel}}, Path=MovieTappedCommand}"		
+                                            CommandParameter="{Binding .}"
+                                            WidthRequest="50"
+                                            HeightRequest="40"/>
+
+                                        <Button Text="{x:Static md:Icons.Close}"
+                                            FontFamily="MaterialOutlined"
+                                            FontSize="Large"
+                                            Style="{StaticResource AccentButtonStyle}"
+                                            Command="{Binding Source={RelativeSource
+                                                AncestorType={x:Type vmodel:DownloadsViewModel}}, Path=DeleteCommand}"		
+                                            CommandParameter="{Binding .}"
+                                            WidthRequest="50"
+                                            HeightRequest="40"/>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+
+                            </Grid>
+                        </ContentView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            <CollectionView.EmptyView>
+
+                <Grid RowDefinitions="*,Auto,*">
+
+                    <ContentView />
+
+                    <StackLayout Padding="30"
+                                    Spacing="10"
+                                    Grid.Row="1"
+                                    VerticalOptions="Center">
+
+                        <Label Text="{x:Static res:AppResources.NoItems}"
+                                Style="{StaticResource BodyLabelStyle}"
+                                HorizontalTextAlignment="Center" />
+
+                        <Image Margin="{StaticResource SmallSpace}">
+                            <Image.Source>
+                                <FontImageSource Glyph="{x:Static md:Icons.Search}"
+                                                    FontFamily="Material"
+                                                    Color="{StaticResource SecondaryTextColor}"
+                                                    Size="120" />
+                            </Image.Source>
+                        </Image>
+
+                    </StackLayout>
+
+                    <ContentView Grid.Row="2"/>
+
+                </Grid>
+
+            </CollectionView.EmptyView>
+
+            </CollectionView>
+
+        </RefreshView>
+
+</ContentPage>
+

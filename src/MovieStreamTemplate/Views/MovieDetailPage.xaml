@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.MovieDetailPage"
+    xmlns:converter="clr-namespace:MovieStreamTemplate.Converters"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:mat="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.Resources>
+        <converter:PosterHeightConverter x:Key="PosterHeightConverter"/>
+        <converter:DownloadStatusConverter x:Key="DownloadStatusConverter"/>
+        <converter:DownloadStatusShowHideConverter x:Key="DownloadStatusShowHideConverter"/>
+        <converter:DownloadStatusIconConverter x:Key="DownloadStatusIconConverter"/>
+        <converter:RatingStarConverter x:Key="RatingStarConverter"/>
+    </ContentPage.Resources>
+
+    <ScrollView>
+
+        <StackLayout Padding="{StaticResource MediumSpace}">
+
+            <Grid ColumnDefinitions="*,*"
+                  ColumnSpacing="{StaticResource MediumSpace}">
+
+                <pan:PancakeView CornerRadius="16">
+                    <Image Source="{Binding Poster}"
+                           HeightRequest="{Binding Source={RelativeSource Self},
+                                Path=Width, Converter={StaticResource PosterHeightConverter}}"/>
+                </pan:PancakeView>
+
+                <StackLayout Grid.Column="1"
+                             Spacing="{StaticResource MicroSpace}">
+
+                    <Label Text="{x:Static res:AppResources.Director}"
+                           Style="{StaticResource CaptionLabelStyle}"/>
+
+                    <Label Text="{Binding DirectorName}"
+                           Style="{StaticResource SubtitleLabelStyle}" />
+
+                    <Label Text="{x:Static res:AppResources.Genre}"
+                           Style="{StaticResource CaptionLabelStyle}"/>
+
+                    <Label Text="{Binding Genre}"
+                           Style="{StaticResource SubtitleLabelStyle}" />
+
+                    <Label Text="{x:Static res:AppResources.Year}"
+                           Style="{StaticResource CaptionLabelStyle}"/>
+
+                    <Label Text="{Binding Year}"
+                           Style="{StaticResource SubtitleLabelStyle}" />
+
+                    <Label Text="{x:Static res:AppResources.Duration}"
+                           Style="{StaticResource CaptionLabelStyle}" />
+
+                    <Label Text="{Binding Duration}"
+                           Style="{StaticResource SubtitleLabelStyle}" />
+
+                    <StackLayout Orientation="Horizontal"
+                                 IsVisible="{Binding DownloadLabelIsVisible}">
+
+                        <Label Text="{Binding Status, Converter={StaticResource DownloadStatusIconConverter}}"
+                               TextColor="{StaticResource AccentColor}"
+                               FontFamily="Material"
+                               FontSize="Medium"/>
+
+                        <Label Text="{Binding DownloadLabelText}"
+                               Style="{StaticResource AccentLabelStyle}"/>
+
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal"
+                                 IsVisible="{Binding IsInWatchlist}">
+
+                        <Label Text="{x:Static mat:Icons.Bookmark}"
+                               TextColor="{StaticResource AccentColor}"
+                               FontFamily="Material"
+                               FontSize="Medium"/>
+
+                        <Label Text="{Binding WatchlistLabelText}"
+                               Style="{StaticResource AccentLabelStyle}" />
+
+                    </StackLayout>
+
+                </StackLayout>
+
+            </Grid>
+
+
+            <StackLayout Spacing="{StaticResource MediumSpace}">
+
+                <Label Text="{Binding Name}"
+                        Style="{StaticResource TitleLabelStyle}"/>
+
+                <StackLayout Orientation="Horizontal"
+                             Spacing="{StaticResource SmallSpace}">
+
+                    <template:RatingStars Rating="{Binding AverageRating}"
+                                          ControlTemplate="{StaticResource RatingStarsControlTemplate}"
+                                          StarSize="24"/>
+
+                    <Label Text="{Binding AverageRating, StringFormat='({0:f1})'}"
+                           TextColor="{StaticResource PrimaryTextColor}"
+                           FontSize="Medium"
+
+                           VerticalTextAlignment="Center"/>
+
+                    <Label Text="{x:Static res:AppResources.ShowReviews}"
+                           Style="{StaticResource LinkLabelStyle}"
+                           VerticalTextAlignment="Center"
+                           HorizontalOptions="EndAndExpand">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                  Command="{Binding ShowReviewsCommand}" />
+                        </Label.GestureRecognizers>
+
+                    </Label>
+
+                </StackLayout>
+
+                <Button Text="{x:Static res:AppResources.Play}"
+                        Command="{Binding PlayCommand}"
+                        Style="{StaticResource PrimaryButtonStyle}" />
+
+                <Button Text="{Binding DownloadButtonCaption}"
+                        Command="{Binding DownloadCommand}"
+                        Style="{StaticResource SecondaryButtonStyle}" />
+
+                <Button Text="{Binding WatchlistButtonCaption}"
+                        Command="{Binding WatchlistCommand}"
+                        Style="{StaticResource SecondaryButtonStyle}" />
+                    
+                <Label Text="{Binding Description}"
+                        Style="{StaticResource SmallBodyLabelStyle}"/>
+                    
+            </StackLayout>
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+

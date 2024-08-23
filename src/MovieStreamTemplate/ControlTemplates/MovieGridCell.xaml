@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.ControlTemplates.MovieGridCell"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:converter="clr-namespace:MovieStreamTemplate.Converters"
+    xmlns:model="clr-namespace:MovieStreamTemplate.Models">
+
+    <ContentView.Resources>
+
+        <converter:DownloadStatusConverter x:Key="DownloadStatusConverter" />
+        <converter:DownloadStatusShowHideConverter x:Key="DownloadStatusShowHideConverter" />
+
+        <ControlTemplate x:Key="MovieGridCellTemplate">
+
+            <RelativeLayout>
+
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                        RowDefinitions="8,*,Auto"
+                        Padding="{StaticResource SmallSpace}"
+                        ColumnSpacing="0"
+                        RowSpacing="0"
+                        BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                        RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                            Property=Width, Factor=1.0}"
+                        RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                            Property=Width, Factor=1.5}">
+
+                    <pan:PancakeView CornerRadius="16"
+                                     Grid.Row="1"
+                                     Grid.ColumnSpan="3"
+                                     Grid.RowSpan="2">
+
+                        <Image Source="{Binding Poster}"
+                               Aspect="AspectFill"/>
+
+                    </pan:PancakeView>
+
+                    <Label Text="{x:Static md:Icons.Bookmark}"
+                            TextColor="{StaticResource AccentColor}"
+                            FontFamily="Material"
+                            FontSize="Title"
+                            IsVisible="{Binding ShowBookmark}"
+                            Grid.Column="2"
+                            Grid.RowSpan="2"/>
+
+                    <pan:PancakeView CornerRadius="16,0,0,8"
+                                     BackgroundColor="#60000000"
+                                     VerticalOptions="Start"
+                                     IsVisible="{Binding ShowRating}"
+                                    Grid.Column="0"
+                                    Grid.Row="1"
+                                    Grid.RowSpan="2"
+                                    Padding="4"
+                                    Margin="0">
+                    
+                        <Grid ColumnDefinitions="Auto,Auto"
+                                VerticalOptions="Start">
+
+                        <Label Text="{x:Static md:Icons.Star}"
+                                TextColor="{StaticResource PrimaryTextColor}"
+                                FontFamily="Material"
+                                FontSize="Medium"/>
+
+                        <Label Text="{Binding AverageRating, StringFormat='{0:F1}'}"
+                               TextColor="{StaticResource PrimaryTextColor}"
+                               FontSize="Small"
+                               Grid.Column="1"/>
+                        </Grid>
+                    </pan:PancakeView>
+
+                    <pan:PancakeView IsVisible="{Binding Status, Converter={StaticResource DownloadStatusShowHideConverter}}"
+                                     CornerRadius="0,0,16,16"
+                                     BackgroundColor="{StaticResource AccentColor}"
+                                     Grid.Row="2"
+                                     Grid.ColumnSpan="3">
+
+                        <Label Text="{Binding Status, Converter={StaticResource DownloadStatusConverter}}"
+                               TextColor="Black"
+                               HorizontalTextAlignment="Center"
+                               FontSize="Small"/>
+
+                    </pan:PancakeView>
+
+                    <Grid.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding MovieTappedCommand}"
+                                              CommandParameter="{Binding MovieId}"/>
+                    </Grid.GestureRecognizers>
+
+                </Grid>
+
+            </RelativeLayout>
+
+        </ControlTemplate>
+
+    </ContentView.Resources>
+
+</ContentView>
+

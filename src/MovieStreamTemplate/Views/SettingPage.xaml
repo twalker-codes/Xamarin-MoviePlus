@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.SettingPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.BindingContext>
+        <vmodel:SettingViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+
+        <StackLayout Padding="{StaticResource LargeSpace}"
+                        Spacing="{StaticResource SmallSpace}">
+
+            <Label Text="{x:Static res:AppResources.Setting}"
+                    Style="{StaticResource TitleLabelStyle}"
+                    HorizontalTextAlignment="Center" />
+
+            <ContentView Style="{StaticResource LargeSpacer}" />
+
+            <StackLayout Spacing="{StaticResource LargeSpace}">
+
+                <Grid ColumnDefinitions="Auto,*,Auto"
+                      RowDefinitions="Auto,Auto,Auto"
+                      ColumnSpacing="{StaticResource SmallSpace}"
+                      RowSpacing="{StaticResource LargeSpace}">
+
+                    <Label Text="{x:Static md:Icons.Notifications}"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           VerticalTextAlignment="Center"
+                           FontFamily="Material"
+                           FontSize="Title"/>
+
+                    <Label Text="{x:Static res:AppResources.AllowNotifications}"
+                           Style="{StaticResource  CaptionLabelStyle}"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1"/>
+
+                    <Switch IsToggled="True"
+                            VerticalOptions="Center"
+                            Grid.Column="2"/>
+
+
+                    <Label Text="{x:Static md:Icons.SignalCellularAlt}"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontFamily="Material"
+                           FontSize="Title"
+                           Grid.Row="1"/>
+
+                    <Label Text="{x:Static res:AppResources.UseCellularData}"
+                           Style="{StaticResource  CaptionLabelStyle}"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1"
+                           Grid.Row="1"/>
+
+                    <Switch IsToggled="True"
+                            VerticalOptions="Center"
+                            Grid.Column="2"
+                            Grid.Row="1"/>
+
+                    <Label Text="{x:Static md:Icons.Wifi}"
+                           TextColor="{StaticResource SecondaryTextColor}"
+                           FontFamily="Material"
+                           FontSize="Title"
+                           Grid.Row="2"/>
+
+                    <Label Text="{x:Static res:AppResources.OnlyWifiWhenDownloading}"
+                           Style="{StaticResource  CaptionLabelStyle}"
+                           VerticalTextAlignment="Center"
+                           Grid.Column="1"
+                           Grid.Row="2"/>
+
+                    <Switch IsToggled="False"
+                            VerticalOptions="Center"
+                            Grid.Column="2"
+                            Grid.Row="2"/>
+
+                    <Button Style="{StaticResource SecondaryButtonStyle}"
+                            Text="{x:Static res:AppResources.TermsConditions}"
+                            Command="{Binding TermsCommand}"
+                            Grid.Row="3"
+                            Grid.ColumnSpan="3"/>
+
+                </Grid>
+
+
+            </StackLayout>
+
+        </StackLayout>
+
+    </ScrollView>
+
+
+</ContentPage>
+

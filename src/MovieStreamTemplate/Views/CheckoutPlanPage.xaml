@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.CheckoutPlanPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.BindingContext>
+        <vmodel:CheckoutPlanViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+
+        <StackLayout Padding="{StaticResource LargeSpace}"
+                     Spacing="{StaticResource SmallSpace}">
+
+            <Label Text="{x:Static res:AppResources.ChoosePlan}"
+                   Style="{StaticResource TitleLabelStyle}"
+                   HorizontalTextAlignment="Center"/>
+
+            <Label Text="{x:Static res:AppResources.YouCanCancelAnyTime}"
+                   Style="{StaticResource BodyLabelStyle}"
+                   HorizontalTextAlignment="Center"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}"/>
+
+            <Grid ColumnDefinitions="*,*,*"
+                  RowDefinitions="40,40,40,40,40,40,40,40,40"
+                  ColumnSpacing="{StaticResource MediumSpace}">
+
+                <!-- Row:0 -->
+
+                <Label Text="{x:Static res:AppResources.Free}"
+                       TextColor="{StaticResource TextColorOnAccent}"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="{StaticResource AccentColor}"/>
+
+                <Label Text="{x:Static res:AppResources.Standard}"
+                       TextColor="{StaticResource TextColorOnAccent}"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="{StaticResource AccentColor}"
+                       Grid.Column="1"/>
+
+                <Label Text="{x:Static res:AppResources.Premium}"
+                       TextColor="{StaticResource TextColorOnAccent}"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       BackgroundColor="{StaticResource AccentColor}"
+                       Grid.Column="2"/>
+
+                <!-- Row:1 -->
+
+                <Label Text="{x:Static res:AppResources.AnnularPrice}"
+                       Style="{StaticResource CaptionLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="1"
+                       Grid.ColumnSpan="3"/>
+
+                <!-- Row:2 -->
+
+                <Label Text="$0.00"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="2"/>
+
+                <Label Text="$80.00"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="1"
+                       Grid.Row="2"/>
+
+                <Label Text="$160.00"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="2"
+                       Grid.Row="2"/>
+
+                <!-- Row:3 -->
+
+                <Label Text="{x:Static res:AppResources.VideoQuality}"
+                       Style="{StaticResource CaptionLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="3"
+                       Grid.ColumnSpan="3"/>
+
+                <!-- Row:4 -->
+
+                <Label Text="{x:Static res:AppResources.Good}"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="4"/>
+
+                <Label Text="{x:Static res:AppResources.Better}"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="1"
+                       Grid.Row="4"/>
+
+                <Label Text="{x:Static res:AppResources.TheBest}"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="2"
+                       Grid.Row="4"/>
+
+                <!-- Row:5 -->
+
+                <Label Text="{x:Static res:AppResources.Resolution}"
+                       Style="{StaticResource CaptionLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="5"
+                       Grid.ColumnSpan="3"/>
+
+                <!-- Row:6 -->
+
+                <Label Text="480p"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="6"/>
+
+                <Label Text="1080p"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="1"
+                       Grid.Row="6"/>
+
+                <Label Text="4K+HDR"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="2"
+                       Grid.Row="6"/>
+
+                <!-- Row:7 -->
+
+                <Label Text="{x:Static res:AppResources.NumberOfDevices}"
+                       Style="{StaticResource CaptionLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="7"
+                       Grid.ColumnSpan="3"/>
+
+                <!-- Row:8 -->
+
+                <Label Text="1"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Row="8"/>
+
+                <Label Text="2"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="1"
+                       Grid.Row="8"/>
+
+                <Label Text="4"
+                       Style="{StaticResource SubtitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Grid.Column="2"
+                       Grid.Row="8"/>
+
+                <!-- 9 -->
+
+                <Button Text="{x:Static res:AppResources.Choose}"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding ChooseFreeCommand}"
+                        Grid.Row="9"/>
+
+                <Button Text="{x:Static res:AppResources.Choose}"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding ChooseStandardCommand}"
+                        Grid.Column="1"
+                        Grid.Row="9"/>
+
+                <Button Text="{x:Static res:AppResources.Choose}"
+                        Style="{StaticResource SecondaryButtonStyle}"
+                        Command="{Binding ChoosePremiumCommand}"
+                        Grid.Column="2"
+                        Grid.Row="9"/>
+
+            </Grid>
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+

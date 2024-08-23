@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       x:Class="MovieStreamTemplate.AppShell"
+       xmlns:views="clr-namespace:MovieStreamTemplate.Views"
+       xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+       xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+       Title="MovieStreamTemplate">
+
+    <!--
+        The overall app visual hierarchy is defined here, along with navigation.
+    
+        https://docs.microsoft.com/xamarin/xamarin-forms/app-fundamentals/shell/
+    -->
+
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource BackgroundDarkColor}" />
+                <Setter Property="Shell.ForegroundColor" Value="White" />
+                <Setter Property="Shell.TitleColor" Value="White" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+                <Setter Property="Shell.TabBarBackgroundColor" Value="{StaticResource  BackgroundLightColor}" />
+                <Setter Property="Shell.TabBarForegroundColor" Value="White"/>
+                <Setter Property="Shell.TabBarUnselectedColor" Value="White"/>
+                <Setter Property="Shell.TabBarTitleColor" Value="{StaticResource AccentColor}"/>
+            </Style>
+            <Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+        </ResourceDictionary>
+    </Shell.Resources>
+
+    <TabBar Route="tabbar">
+
+        <Tab Title="{x:Static res:AppResources.Home}" Route="home">
+            <Tab.Icon>
+                <FontImageSource FontFamily="Material" Glyph="{x:Static md:Icons.Home}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:HomePage}" />
+        </Tab>
+
+        <Tab Title="{x:Static res:AppResources.Search}" Route="search">
+            <Tab.Icon>
+                <FontImageSource FontFamily="Material" Glyph="{x:Static md:Icons.Search}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:SearchPage}" />
+        </Tab>
+
+        <Tab Title="{x:Static res:AppResources.Downloads}" Route="downloads">
+            <Tab.Icon>
+                <FontImageSource FontFamily="Material" Glyph="{x:Static md:Icons.Download}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:DownloadsPage}" />
+        </Tab>
+
+        <Tab Title="{x:Static res:AppResources.MyProfile}" Route="myprofile">
+            <Tab.Icon>
+                <FontImageSource FontFamily="Material" Glyph="{x:Static md:Icons.Person}" />
+            </Tab.Icon>
+            <ShellContent ContentTemplate="{DataTemplate views:MyProfilePage}" />
+        </Tab>
+
+    </TabBar>
+
+
+</Shell>
+

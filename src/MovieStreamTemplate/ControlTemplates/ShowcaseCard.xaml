@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.ControlTemplates.ShowcaseCard"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:model="clr-namespace:MovieStreamTemplate.Models"
+    xmlns:converter="clr-namespace:MovieStreamTemplate.Converters">
+
+    <ContentView.Resources>
+
+        <converter:ShowcaseSizeConverter x:Key="ShowcaseSizeConverter" />
+
+        <ControlTemplate x:Key="ShowcaseCardTemplate">
+
+            <StackLayout BindingContext="{Binding Source={RelativeSource TemplatedParent}}">
+
+                <StackLayout Orientation="Horizontal">
+
+                    <Label Text="{Binding Title}"
+                           Style="{StaticResource SubtitleLabelStyle}"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="Center"
+                           Margin="8"/>
+
+                    <Label Text="{x:Static md:Icons.ChevronRight}"
+                           TextColor="White"
+                           FontFamily="Material"
+                           FontSize="Title"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"/>
+
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding TitleCommand}" />
+                    </StackLayout.GestureRecognizers>
+
+                </StackLayout>
+
+                <CollectionView ItemsSource="{Binding Movies}"
+                                SelectionMode="None"
+                                HeightRequest="{Binding Size, Converter={StaticResource ShowcaseSizeConverter}}"
+                                HorizontalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal"/>
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+
+                            <template:MovieLinearCell MovieId="{Binding Id}"
+                                                      Poster="{Binding Poster}"
+                                                      ShowBookmark="{Binding IsInWatchlist}"
+                                                      Status="{Binding DownloadStatus}"
+                                                      AverageRating="{Binding AverageRating}"
+                                                      ControlTemplate="{StaticResource MovieLinearCellTemplate}" />
+
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+
+            </StackLayout>
+            
+
+        </ControlTemplate>
+
+    </ContentView.Resources>
+
+</ContentView>
+

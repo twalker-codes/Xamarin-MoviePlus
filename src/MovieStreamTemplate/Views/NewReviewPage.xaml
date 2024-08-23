@@ -1,0 +1,193 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.NewReviewPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:converter="clr-namespace:MovieStreamTemplate.Converters"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <ContentPage.BindingContext>
+        <vmodel:NewReviewViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <converter:ShortDateConverter x:Key="ShortDateConverter" />
+        <converter:RatingStarConverter x:Key="RatingStarConverter"/>
+        <converter:MovieGenreConverter x:Key="MovieGenreConverter" />
+    </ContentPage.Resources>
+
+
+    <Grid RowDefinitions="Auto,*"
+          Padding="{StaticResource SmallSpace}"
+          RowSpacing="0">
+
+        <StackLayout Orientation="Horizontal"
+                     Spacing="{StaticResource MediumSpace}"
+                     Padding="{StaticResource SmallSpace}">
+
+            <pan:PancakeView CornerRadius="16"
+                             WidthRequest="100"
+                             HeightRequest="150">
+                <Image Source="{Binding Poster}" />
+            </pan:PancakeView>
+
+            <StackLayout VerticalOptions="Center">
+
+                <Label Text="{Binding Name}"
+                       Style="{StaticResource TitleLabelStyle}"/>
+
+                <StackLayout Orientation="Horizontal">
+                    <template:RatingStars Rating="{Binding AverageRating}"
+                                          ControlTemplate="{StaticResource RatingStarsControlTemplate}"
+                                          StarSize="24"/>
+
+                    <Label Text="{Binding AverageRating, StringFormat='({0:f1})'}"
+                           TextColor="{StaticResource PrimaryTextColor}"
+                           FontSize="Medium"
+
+                           VerticalTextAlignment="Center"/>
+
+                </StackLayout>
+
+                <Label Style="{StaticResource CaptionLabelStyle}">
+                    <Label.FormattedText>
+                        <FormattedString>
+
+                            <Span>
+                                <Span.Text>
+                                    <MultiBinding StringFormat="{}{0} · {1} · {2} ">
+                                        <Binding Path="Genre"/>
+                                        <Binding Path="Year"/>
+                                        <Binding Path="Duration"/>
+                                    </MultiBinding>
+                                </Span.Text>
+                            </Span>
+
+                            <Span Text="{x:Static res:AppResources.Mins}"/>
+
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+
+            </StackLayout>
+
+        </StackLayout>
+
+        <StackLayout Grid.Row="1"
+                     Padding="{StaticResource SmallSpace}"
+                     Spacing="{StaticResource SmallSpace}">
+
+            <Label Text="{x:Static res:AppResources.YourReview}"
+                   Style="{StaticResource CaptionLabelStyle}"/>
+
+            <StackLayout Orientation="Horizontal"
+                         x:DataType="vmodel:NewReviewViewModel">
+
+                <Label Text="{Binding StarCount, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=0}"
+                       TextColor="{StaticResource AccentColor}"
+                       FontFamily="Material"
+                       FontSize="40"
+                       VerticalOptions="Center">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                Command="{Binding StarCommand}"
+                                                CommandParameter="1" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+
+                <Label Text="{Binding StarCount, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=1}"
+                       TextColor="{StaticResource AccentColor}"
+                       FontFamily="Material"
+                       FontSize="40"
+                       VerticalOptions="Center">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                Command="{Binding StarCommand}"
+                                                CommandParameter="2" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+                <Label Text="{Binding StarCount, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=2}"
+                       TextColor="{StaticResource AccentColor}"
+                       FontFamily="Material"
+                       FontSize="40"
+                       VerticalOptions="Center">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                Command="{Binding StarCommand}"
+                                                CommandParameter="3" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+                <Label Text="{Binding StarCount, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=3}"
+                       TextColor="{StaticResource AccentColor}"
+                       FontFamily="Material"
+                       FontSize="40"
+                       VerticalOptions="Center">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                Command="{Binding StarCommand}"
+                                                CommandParameter="4" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+                <Label Text="{Binding StarCount,
+                            Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=4}"
+                       TextColor="{StaticResource AccentColor}"
+                       FontFamily="Material"
+                       FontSize="40"
+                       VerticalOptions="Center">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                Command="{Binding StarCommand}"
+                                                CommandParameter="5" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+            </StackLayout>
+
+            <ContentView Style="{StaticResource SmallSpacer}" />
+
+            <Label Text="{x:Static res:AppResources.YourReviewOptional}"
+                    Style="{StaticResource CaptionLabelStyle}" />
+
+            <template:ChicEditor Text="{Binding Text, Mode=TwoWay}"
+                                 HeightRequest="150"
+                                ControlTemplate="{StaticResource ChicEditorControlTemplate}"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}" />
+
+            <Button Style="{StaticResource PrimaryButtonStyle}"
+                    Text="{x:Static res:AppResources.Submit}"
+                    Command="{Binding SubmitCommand}"/>
+
+
+        </StackLayout>
+
+    </Grid>    
+
+</ContentPage>
+

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.HelpPage"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{x:Static res:AppResources.Help}">
+
+    <ContentPage.BindingContext>
+        <vmodel:HelpViewModel />
+    </ContentPage.BindingContext>
+
+    <StackLayout Spacing="{StaticResource SmallSpace}"
+                 Padding="{StaticResource SmallSpaceNoBottom}">
+
+        <Grid ColumnDefinitions="*,50, 50"
+              RowDefinitions="Auto"
+              Padding="{StaticResource SmallSpace}"
+              ColumnSpacing="{StaticResource SmallSpace}">
+
+                <template:ChicEntry Text="{Binding Keyword}"
+                                    ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+                <Button Text="{x:Static md:Icons.Search}"
+                        FontFamily="Material"
+                        FontSize="Large"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Command="{Binding SearchCommand}"
+                        Grid.Column="1"/>
+
+                <Button Text="{x:Static md:Icons.Close}"
+                        FontFamily="Material"
+                        FontSize="Large"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Command="{Binding ClearCommand}"
+                        Grid.Column="2"/>
+
+
+        </Grid>
+
+        <CollectionView ItemsSource="{Binding HelpItems}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+            </CollectionView.ItemsLayout>
+
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <ContentView Padding="{StaticResource SmallSpace}">
+
+                        <pan:PancakeView CornerRadius="{StaticResource MediumSpace}"
+                                         BackgroundColor="{StaticResource PrimaryColor}"
+                                         Padding="{StaticResource MediumSpace}">
+                    
+                            <Grid ColumnDefinitions="Auto,*"
+                                  RowDefinitions="Auto,Auto">
+
+                                <Label Text="{Binding Icon}"
+                                       TextColor="{StaticResource PrimaryTextColor}"
+                                       FontFamily="Material"
+                                       FontSize="Title"
+                                       Grid.RowSpan="2"
+                                       VerticalOptions="Start"
+                                       HorizontalTextAlignment="Center"/>
+
+                                <Label Text="{Binding Question}"
+                                       Style="{StaticResource SubtitleLabelStyle}"
+                                       Grid.Column="1"/>
+
+                                <Label Text="{Binding Answer}"
+                                       Style="{StaticResource BodyLabelStyle}"
+                                       IsVisible="{Binding IsExpanded}"
+                                       Grid.Column="1"
+                                       Grid.Row="1"/>
+
+                            </Grid>
+
+                            <pan:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                      Command="{Binding ItemCommand}"
+                                                      CommandParameter="{Binding .}" />
+                            </pan:PancakeView.GestureRecognizers>
+
+                        </pan:PancakeView>
+
+                    </ContentView>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </StackLayout>
+
+</ContentPage>
+

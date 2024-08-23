@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.MoviesPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:model="clr-namespace:MovieStreamTemplate.Models"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+
+        <ToolbarItem Command="{Binding SortCommand}">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="Material"
+                                 Glyph="{x:Static md:Icons.SwapVert}" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+
+    </ContentPage.ToolbarItems>
+
+    <RefreshView Command="{Binding LoadCommand}"
+                 IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                 RefreshColor="{StaticResource PrimaryTextColor}"
+                 Padding="{StaticResource SmallSpace}">
+
+        <CollectionView ItemsSource="{Binding Movies}"
+                        SelectionMode="None">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical">
+                    <GridItemsLayout.Span>
+                        <OnIdiom x:TypeArguments="x:Int32">
+                            <OnIdiom.Phone>2</OnIdiom.Phone>
+                            <OnIdiom.Tablet>4</OnIdiom.Tablet>
+                        </OnIdiom>
+                    </GridItemsLayout.Span>
+                </GridItemsLayout>
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <template:MovieGridCell x:DataType="model:Movie"
+                                            MovieId="{Binding Id}"
+                                            Poster="{Binding Poster}"
+                                            ShowBookmark="{Binding IsInWatchlist}"
+                                            Status="{Binding DownloadStatus}"
+                                            AverageRating="{Binding AverageRating}"
+                                            ControlTemplate="{StaticResource MovieGridCellTemplate}"/>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </RefreshView>
+
+</ContentPage>
+

@@ -1,0 +1,236 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.MyProfilePage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <ScrollView>
+
+        <StackLayout Padding="{StaticResource LargeSpace}"
+                     Spacing="{StaticResource SmallSpace}">
+
+            <Grid ColumnDefinitions="100, *"
+                  RowDefinitions="*,*"
+                  HeightRequest="100"
+                  RowSpacing="{StaticResource SmallSpace}"
+                  ColumnSpacing="{StaticResource SmallSpace}">
+
+                <pan:PancakeView CornerRadius="50"
+                                 Grid.RowSpan="2">
+
+                    <pan:PancakeView.Border>
+                        <pan:Border Color="{StaticResource AccentColor}"
+                                    Thickness="2"/>
+                    </pan:PancakeView.Border>
+
+                    <Image Source="{Binding Photo}"
+                           Aspect="AspectFill" />
+
+                </pan:PancakeView>
+
+                <Label Text="{Binding FullName}"
+                       Style="{StaticResource TitleLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="End"
+                       Grid.Column="1"/>
+
+                <Label Text="{Binding Plan}"
+                       Style="{StaticResource LinkLabelStyle}"
+                       HorizontalTextAlignment="Center"
+                       VerticalOptions="Start"
+                       Grid.Column="1"
+                       Grid.Row="1">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                              Command="{Binding UpdatePlanCommand}" />
+                    </Label.GestureRecognizers>
+
+                </Label>
+
+            </Grid>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <pan:PancakeView CornerRadius="16"
+                             BackgroundColor="#10ffffff">
+
+                <Grid ColumnDefinitions="*,Auto"
+                      RowSpacing="0">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="{StaticResource MediumSpace}" />
+                    </Grid.RowDefinitions>
+
+                    <Label Text="{x:Static res:AppResources.Profile}"
+                           Style="{StaticResource  SubtitleLabelStyle}"
+                           Margin="{StaticResource MediumSpace}"/>
+
+                    <Label Text="{x:Static res:AppResources.Edit}"
+                           Style="{StaticResource LinkLabelStyle}"
+                           Margin="{StaticResource MediumSpace}"
+                           Grid.Column="1">
+
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                  Command="{Binding EditProfileCommand}" />
+                        </Label.GestureRecognizers>
+
+                    </Label>
+
+                    <CollectionView ItemsSource="{Binding Profiles}"
+                                    SelectionMode="None"
+                                    HeightRequest="90"
+                                    HorizontalScrollBarVisibility="Never"
+                                    Grid.Row="1"
+                                    Grid.ColumnSpan="2">
+
+                        <CollectionView.ItemsLayout>
+                            <LinearItemsLayout Orientation="Horizontal" ItemSpacing="0"/>
+                        </CollectionView.ItemsLayout>
+
+                        <CollectionView.Footer>
+
+                            <Grid RowDefinitions="*,Auto">
+
+                                <RelativeLayout HorizontalOptions="Center">
+
+                                    <pan:PancakeView CornerRadius="16"
+                                                     RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1.0}"
+                                                     RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1.0}">
+
+                                        <pan:PancakeView.Border>
+                                            <pan:Border Color="{StaticResource PrimaryTextColor}"
+                                                        Thickness="1" />
+                                        </pan:PancakeView.Border> 
+
+                                        <Image Margin="{StaticResource MediumSpace}">
+                                            <Image.Source>
+                                                <FontImageSource Glyph="{x:Static md:Icons.Add}"
+                                                                 FontFamily="Material"
+                                                                 Size="Title"
+                                                                 Color="{StaticResource PrimaryTextColor}"/>
+                                            </Image.Source>
+                                        </Image>
+                                    </pan:PancakeView>
+                                </RelativeLayout>
+
+                                <Label Text="{x:Static res:AppResources.Add}"
+                                        HorizontalTextAlignment="Center"
+                                        Style="{StaticResource CaptionLabelStyle}"
+                                        Grid.Row="1"/>
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                          Command="{Binding AddProfileCommand}"		
+                                                          CommandParameter="{Binding .}"/>
+                                </Grid.GestureRecognizers>
+
+                            </Grid>
+                            
+                        </CollectionView.Footer>
+
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <ContentView x:DataType="vmodel:ProfileViewModel">
+
+                                    <Grid RowDefinitions="*,Auto">
+
+                                        <RelativeLayout HorizontalOptions="Center">
+                                            <pan:PancakeView CornerRadius="16"
+                                                             RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=1.0}">
+
+                                                <pan:PancakeView.Border>
+                                                    <pan:Border Color="{StaticResource AccentColor}"
+                                                                Thickness="{Binding BorderThickness}" />
+                                                </pan:PancakeView.Border> 
+
+                                                <Image Source="{Binding Image}"
+                                                       Aspect="AspectFill"/>
+
+                                            </pan:PancakeView>
+
+                                            <pan:PancakeView CornerRadius="16,0,0,8"
+                                                             BackgroundColor="{StaticResource AccentColor}"
+                                                             IsVisible="{Binding IsSelected}">
+
+                                                <Label Text="{x:Static md:Icons.Check}"
+                                                       TextColor="{StaticResource TextColorOnAccent}"
+                                                       FontFamily="Material"
+                                                       FontSize="Small"
+                                                       WidthRequest="24"
+                                                       HeightRequest="24"
+                                                       HorizontalTextAlignment="Center"
+                                                       VerticalTextAlignment="Center"/>
+
+                                            </pan:PancakeView>
+                                        </RelativeLayout>
+
+                                        <Label Text="{Binding Name}"
+                                                HorizontalTextAlignment="Center"
+                                                Style="{StaticResource CaptionLabelStyle}"
+                                                Grid.Row="1"/>
+
+                                        <Grid.GestureRecognizers>
+                                            <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                                  Command="{Binding Source={RelativeSource
+                                                                          AncestorType={x:Type vmodel:MyProfileViewModel}}, Path=ProfileCommand}"		
+                                                                  CommandParameter="{Binding .}"/>
+
+                                        </Grid.GestureRecognizers>
+
+                                    </Grid>
+
+                                </ContentView>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+
+                </Grid>
+
+            </pan:PancakeView>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <Button Style="{StaticResource SecondaryButtonStyle}"
+                    Text="{x:Static res:AppResources.Watchlist}"
+                    Command="{Binding WatchlistCommand}"/>
+
+            <Button Style="{StaticResource SecondaryButtonStyle}"
+                    Text="{x:Static res:AppResources.ChangePassword}"
+                    Command="{Binding ChangePasswordCommand}"/>
+
+            <Button Style="{StaticResource SecondaryButtonStyle}"
+                    Text="{x:Static res:AppResources.AccountDetails}"
+                    Command="{Binding AccountDetailsCommand}"/>
+
+            <Button Style="{StaticResource SecondaryButtonStyle}"
+                    Text="{x:Static res:AppResources.Setting}"
+                    Command="{Binding SettingCommand}"/>
+
+            <Button Style="{StaticResource SecondaryButtonStyle}"
+                    Text="{x:Static res:AppResources.Help}"
+                    Command="{Binding HelpCommand}"/>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <Button Style="{StaticResource PrimaryButtonStyle}"
+                    Text="{x:Static res:AppResources.LogOut}"
+                    Command="{Binding LogOutCommand}"/>
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+

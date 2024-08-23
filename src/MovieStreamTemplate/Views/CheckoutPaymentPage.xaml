@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.CheckoutPaymentPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.BindingContext>
+        <vmodel:CheckoutPaymentViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+
+        <StackLayout Padding="{StaticResource LargeSpace}"
+                     Spacing="{StaticResource SmallSpace}">
+
+            <Grid ColumnDefinitions="*, Auto">
+
+                <Label Text="{Binding SelectedPlan}"
+                       Style="{StaticResource TitleLabelStyle}"/>
+
+                <Label Text="{Binding Price, StringFormat='${0:F2}'}"
+                       Style="{StaticResource TitleLabelStyle}"
+                       Grid.Column="1"/>
+            </Grid>
+
+            <ContentView Style="{StaticResource LargeSpacer}" />
+
+            <Label Text="{x:Static res:AppResources.CardOwnersName}"
+                   Style="{StaticResource  CaptionLabelStyle}" />
+
+            <template:ChicEntry Text="{Binding CardOwner, Mode=TwoWay}"
+                                ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}"/>
+
+            <Label Text="{x:Static res:AppResources.CardNumber}"
+                   Style="{StaticResource CaptionLabelStyle}"/>
+
+            <template:ChicEntry Text="{Binding CardNumber, Mode=TwoWay}"
+                                ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}"/>
+
+            <Grid RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*, *, *"
+                  ColumnSpacing="{StaticResource MediumSpace}">
+
+                <Label Text="{x:Static res:AppResources.Month}"
+                        Style="{StaticResource CaptionLabelStyle}" />
+
+                <template:ChicEntry Text="{Binding Month, Mode=TwoWay}"
+                                    Grid.Row="1"
+                                    ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+                <Label Grid.Column="1"
+                        Text="{x:Static res:AppResources.Year}"
+                        Style="{StaticResource CaptionLabelStyle}" />
+
+                <template:ChicEntry Text="{Binding Month, Mode=TwoWay}"
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+                <Label Grid.Column="2"
+                        Text="{x:Static res:AppResources.Cvc}"
+                        Style="{StaticResource CaptionLabelStyle}" />
+
+                <template:ChicEntry Text="{Binding Month, Mode=TwoWay}"
+                                    Grid.Row="1"
+                                    Grid.Column="2"
+                                    ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            </Grid>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <Button Text="{x:Static res:AppResources.Checkout}"
+                    Style="{StaticResource PrimaryButtonStyle}"
+                    Command="{Binding CheckoutCommand}"/>
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+

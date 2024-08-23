@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.SignUpPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}">
+
+    <ContentPage.BindingContext>
+        <vmodel:SignUpViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+
+        <StackLayout Padding="{StaticResource LargeSpace}"
+                     Spacing="{StaticResource SmallSpace}">
+
+            <Label Text="{x:Static res:AppResources.HelloSignUp}"
+                   Style="{StaticResource TitleLabelStyle}"
+                   HorizontalTextAlignment="Center"/>
+
+            <ContentView Style="{StaticResource LargeSpacer}" />
+
+            <Label Text="{x:Static res:AppResources.FullName}"
+                   Style="{StaticResource CaptionLabelStyle}" />
+
+            <template:ChicEntry Text="{Binding FullName, Mode=TwoWay}"
+                                ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}" />
+
+            <Label Text="{x:Static res:AppResources.Username}"
+                   Style="{StaticResource CaptionLabelStyle}" />
+
+            <template:ChicEntry Text="{Binding Username, Mode=TwoWay}"
+                                ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}" />
+
+            <Label Text="{x:Static res:AppResources.Email}"
+                   Style="{StaticResource CaptionLabelStyle}" />
+
+            <template:ChicEntry Text="{Binding Email, Mode=TwoWay}"
+                                ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}" />
+
+            <Label Text="{x:Static res:AppResources.Phone}"
+                   Style="{StaticResource CaptionLabelStyle}" />
+
+            <template:ChicEntry Text="{Binding Phone, Mode=TwoWay}"
+                                ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+            <ContentView Style="{StaticResource SmallSpacer}" />
+
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="Auto,Auto"
+                  RowSpacing="{StaticResource SmallSpace}"
+                  ColumnSpacing="{StaticResource MediumSpace}">
+
+                <Label Text="{x:Static res:AppResources.Password}"
+                       Style="{StaticResource CaptionLabelStyle}" />
+
+                <template:ChicEntry Text="{Binding Password, Mode=TwoWay}"
+                                    ControlTemplate="{StaticResource ChicEntryControlTemplate}"
+                                    Grid.Row="1"/>
+
+                <Label Text="{x:Static res:AppResources.ConfirmPassword}"
+                       Style="{StaticResource CaptionLabelStyle}"
+                       Grid.Column="1"/>
+
+                <template:ChicEntry Text="{Binding ConfirmPassword, Mode=TwoWay}"
+                                    ControlTemplate="{StaticResource ChicEntryControlTemplate}"
+                                    Grid.Row="1"
+                                    Grid.Column="1"/>
+            </Grid>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <Label HorizontalTextAlignment="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalTextAlignment="End">
+
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="{x:Static res:AppResources.ByClickingSignUp}"
+                                Style="{StaticResource CaptionSpanStyle}"/>
+
+                        <Span Text="{x:Static res:AppResources.TermsConditions}"
+                                Style="{StaticResource LinkSpanStyle}" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding TermsCommand}" />
+                </Label.GestureRecognizers>
+
+            </Label>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <Button Style="{StaticResource PrimaryButtonStyle}"
+                    Text="{x:Static res:AppResources.SignUp}"
+                    Command="{Binding SignUpCommand}"/>
+
+            <ContentView Style="{StaticResource MediumSpacer}" />
+
+            <Label HorizontalTextAlignment="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalTextAlignment="End">
+
+                <Label.FormattedText>
+                    <FormattedString>
+
+                        <Span Text="{x:Static res:AppResources.AlreadyHaveAccount}"
+                                Style="{StaticResource CaptionSpanStyle}"/>
+
+                        <Span Text="{x:Static res:AppResources.LogIn}"
+                                Style="{StaticResource LinkSpanStyle}" />
+
+                    </FormattedString>
+                </Label.FormattedText>
+
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                          Command="{Binding LoginCommand}" />
+                </Label.GestureRecognizers>
+
+            </Label>
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>
+

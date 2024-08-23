@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.HomePage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:res="clr-namespace:MovieStreamTemplate.Resources"
+    x:DataType="vmodel:HomeViewModel"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <Grid RowDefinitions="Auto,*">
+
+                <CollectionView ItemsSource="{Binding Genres}"
+                                SelectionMode="None"
+                                HeightRequest="56"
+                                HorizontalScrollBarVisibility="Never">
+
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout Orientation="Horizontal" />
+                    </CollectionView.ItemsLayout>
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate>
+
+                            <ContentView x:DataType="x:String"
+                                         Padding="8">
+
+                                <pan:PancakeView CornerRadius="16"
+                                                 BackgroundColor="{StaticResource PrimaryColor}">
+
+                                    <Label Text="{Binding .}"
+                                            TextColor="White"
+                                            FontSize="Small"
+                                            Margin="12,0,12,0"
+                                            VerticalTextAlignment="Center"
+                                            HorizontalTextAlignment="Center"/>
+
+                                    <pan:PancakeView.GestureRecognizers>
+                                        <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                              Command="{Binding Source={RelativeSource
+                                                                      AncestorType={x:Type vmodel:HomeViewModel}}, Path=GenreCommand}"		
+                                                              CommandParameter="{Binding .}" />
+                                    </pan:PancakeView.GestureRecognizers>
+
+                                </pan:PancakeView>
+
+                            </ContentView>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+    <RefreshView Command="{Binding LoadPageCommand}"
+                    IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                    RefreshColor="{StaticResource PrimaryTextColor}"
+                    Grid.Row="1">
+
+        <ScrollView VerticalScrollBarVisibility="Never">
+
+            <StackLayout>
+                <!-- Featured Movies -->
+
+                <template:ShowcaseCard Title="{x:Static res:AppResources.FeaturedMovies}"
+                                       Size="LARGE"
+                                       Movies="{Binding FeaturedMovies}"
+                                       TitleCommand="{Binding FeaturedMoviesCommand}"
+                                       ControlTemplate="{StaticResource ShowcaseCardTemplate}" />
+
+                <!-- Trending Movies -->
+
+                <template:ShowcaseCard Title="{x:Static res:AppResources.TrendingMovies}"
+                                       Movies="{Binding TrendingMovies}"
+                                       TitleCommand="{Binding TrendingMoviesCommand}"
+                                       ControlTemplate="{StaticResource ShowcaseCardTemplate}" />
+
+                <!-- New Movies -->
+
+                <template:ShowcaseCard Title="{x:Static res:AppResources.NewMovies}"
+                                       Movies="{Binding NewMovies}"
+                                       TitleCommand="{Binding NewMoviesCommand}"
+                                       ControlTemplate="{StaticResource ShowcaseCardTemplate}" />
+
+                <!-- Top Rating Movies -->
+
+                <template:ShowcaseCard Title="{x:Static res:AppResources.TopRatingMovies}"
+                                       Movies="{Binding TopRatingMovies}"
+                                       TitleCommand="{Binding TopRatingMoviesCommand}"
+                                       ControlTemplate="{StaticResource ShowcaseCardTemplate}" />
+
+                <ContentView HeightRequest="8" />
+
+            </StackLayout>
+
+        </ScrollView>
+
+    </RefreshView>
+    </Grid>
+</ContentPage>
+

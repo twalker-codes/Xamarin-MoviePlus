@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MovieStreamTemplate.ControlTemplates.RatingStars"
+             xmlns:converter="clr-namespace:MovieStreamTemplate.Converters">
+
+    <ContentView.Resources>
+
+        <converter:RatingStarConverter x:Key="RatingStarConverter"/>
+
+        <ControlTemplate x:Key="RatingStarsControlTemplate">
+
+            <StackLayout BindingContext="{Binding Source={RelativeSource TemplatedParent}}"
+                         Orientation="Horizontal"
+                         Spacing="0"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center">
+
+                <Label Text="{Binding Rating, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=0}"
+                        TextColor="{StaticResource AccentColor}"
+                        FontFamily="Material"
+                        FontSize="{Binding StarSize}"/>
+
+                <Label Text="{Binding Rating, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=1}"
+                        TextColor="{StaticResource AccentColor}"
+                        FontFamily="Material"
+                        FontSize="{Binding StarSize}"/>
+
+                <Label Text="{Binding Rating, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=2}"
+                        TextColor="{StaticResource AccentColor}"
+                        FontFamily="Material"
+                        FontSize="{Binding StarSize}"/>
+
+                <Label Text="{Binding Rating, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=3}"
+                        TextColor="{StaticResource AccentColor}"
+                        FontFamily="Material"
+                        FontSize="{Binding StarSize}"/>
+
+                <Label Text="{Binding Rating, Converter={StaticResource RatingStarConverter},
+                            ConverterParameter=4}"
+                        TextColor="{StaticResource AccentColor}"
+                        FontFamily="Material"
+                        FontSize="{Binding StarSize}"/>
+
+            </StackLayout>
+
+        </ControlTemplate>
+
+    </ContentView.Resources>
+
+</ContentView>

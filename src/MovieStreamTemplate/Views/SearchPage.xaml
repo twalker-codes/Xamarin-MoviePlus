@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="MovieStreamTemplate.Views.SearchPage"
+    xmlns:vmodel="clr-namespace:MovieStreamTemplate.ViewModels"
+    xmlns:pan="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:md="clr-namespace:MovieStreamTemplate.MaterialDesign"
+    xmlns:template="clr-namespace:MovieStreamTemplate.ControlTemplates"
+    xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+    ios:Page.UseSafeArea="true"
+    Style="{StaticResource ContentPageStyle}"
+    Title="{Binding Title}">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding DeleteAllCommand}">
+            <ToolbarItem.IconImageSource>
+
+                <FontImageSource FontFamily="Material"
+                                 Glyph="{x:Static md:Icons.Delete}" />
+
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <StackLayout Spacing="{StaticResource SmallSpace}"
+                 Padding="{StaticResource SmallSpaceNoBottom}">
+
+        <Grid ColumnDefinitions="*,50, 50"
+              RowDefinitions="Auto"
+              Padding="{StaticResource SmallSpace}"
+              ColumnSpacing="{StaticResource SmallSpace}">
+
+                <template:ChicEntry Text="{Binding Keyword}"
+                                    ControlTemplate="{StaticResource ChicEntryControlTemplate}"/>
+
+                <Button Text="{x:Static md:Icons.Search}"
+                        FontFamily="Material"
+                        FontSize="Large"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Command="{Binding SearchCommand}"
+                        Grid.Column="1"/>
+
+                <Button Text="{x:Static md:Icons.Close}"
+                        FontFamily="Material"
+                        FontSize="Large"
+                        Style="{StaticResource AccentButtonStyle}"
+                        Command="{Binding ClearCommand}"
+                        Grid.Column="2"/>
+
+        </Grid>
+
+        <RefreshView Command="{Binding LoadCommand}"
+                     RefreshColor="{StaticResource PrimaryTextColor}"
+                     IsRefreshing="{Binding IsBusy, Mode=TwoWay}"
+                     Padding="{StaticResource SmallSpace}">
+
+            <CollectionView ItemsSource="{Binding SearchItems}"
+                            SelectionMode="None">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="0" />
+                </CollectionView.ItemsLayout>
+
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                        <ContentView Padding="{StaticResource SmallSpace}">
+
+                            <Grid RowDefinitions="40, 1">
+
+                                <Label Text="{Binding Keyword}"
+                                       Style="{StaticResource BodyLabelStyle}"
+                                       VerticalTextAlignment="Center"/>
+
+                                <ContentView Grid.Row="1"
+                                             BackgroundColor="{StaticResource SecondaryTextColor}"/>
+
+                                <Grid.GestureRecognizers>
+                                    <TapGestureRecognizer NumberOfTapsRequired="1"
+                                                          Command="{Binding Source={RelativeSource
+                                                                          AncestorType={x:Type vmodel:SearchViewModel}}, Path=ItemCommand}"		
+                                                          CommandParameter="{Binding .}" />
+                                </Grid.GestureRecognizers>
+                            </Grid>
+                        </ContentView>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
+
+        </RefreshView>
+
+    </StackLayout>
+
+</ContentPage>
+
